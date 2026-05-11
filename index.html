@@ -1,7 +1,8 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Arquitectura — Ecommerce</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +45,7 @@
       var(--bg-1);
   }
   .scene {
-    width: 1480px;
+    width: 100%; max-width: 1480px;
     background: linear-gradient(180deg, #ffffff 0%, var(--bg-2) 100%);
     border: 1px solid var(--line-soft);
     border-radius: 20px;
@@ -94,7 +95,7 @@
     background: #fdfcf8;
     border-radius: 14px;
     border: 1px solid var(--line-soft);
-    overflow: hidden;
+    overflow-x: auto; overflow-y: auto;
     background-image:
       linear-gradient(to right, rgba(224,221,210,0.28) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(224,221,210,0.28) 1px, transparent 1px);
@@ -241,6 +242,33 @@
     font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
     color: #fff; margin: 0 3px 0 5px; vertical-align: middle;
   }
+
+
+@media (max-width: 900px) {
+  .doc-head h1 { font-size: 18px; }
+  .doc-head .sub { font-size: 10px; }
+  .doc-head .meta { font-size: 9px; }
+  .canvas { overflow-x: auto; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .canvas { min-height: 500px; }
+}
+@media (max-width: 600px) {
+  body { padding: 12px; }
+  .scene { padding: 16px; border-radius: 12px; }
+  .doc-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .doc-head .meta { text-align: left; }
+  .flow-bar { padding: 4px; gap: 2px; }
+  .flow-btn { padding: 6px 10px; font-size: 11px; }
+  .flow-desc { display: none; }
+  .canvas { min-height: 400px; }
+  .below { flex-direction: column; gap: 8px; }
+  .legend { font-size: 9px; gap: 10px; }
+  .below { flex-direction: column; }
+}
+@media (max-width: 400px) {
+  .canvas { min-height: 350px; }
+  body { padding: 8px; }
+  .scene { padding: 12px; }
+}
 </style>
 </head>
 <body>
