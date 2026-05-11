@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Arquitectura — Ecommerce</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,123 +37,155 @@
   html, body { margin: 0; padding: 0; background: var(--bg-1); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; }
   body {
     min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    padding: 24px;
+    padding: 16px;
     background:
       radial-gradient(1200px 600px at 30% 0%, #ffffff 0%, transparent 60%),
       radial-gradient(900px 500px at 90% 100%, #ece9ff 0%, transparent 55%),
       var(--bg-1);
   }
+
   .scene {
-    width: 1480px;
+    max-width: 1480px;
+    margin: 0 auto;
     background: linear-gradient(180deg, #ffffff 0%, var(--bg-2) 100%);
     border: 1px solid var(--line-soft);
     border-radius: 20px;
-    padding: 26px 32px 28px;
+    padding: 20px 16px 24px;
     box-shadow: 0 30px 60px -30px rgba(21,23,28,0.18), 0 2px 6px rgba(21,23,28,0.04);
   }
-  .doc-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line-soft); flex-wrap: wrap; gap: 14px; }
-  .doc-head .title-row { display: flex; align-items: center; gap: 12px; }
+
+  .doc-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line-soft);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .doc-head .title-row { display: flex; align-items: center; gap: 10px; }
   .doc-head .mark {
-    width: 36px; height: 36px; border-radius: 10px;
+    width: 32px; height: 32px; border-radius: 8px;
     background: linear-gradient(135deg, var(--indigo) 0%, #6d28d9 100%);
     display: flex; align-items: center; justify-content: center;
-    color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 15px;
-    box-shadow: 0 6px 16px -8px rgba(67,56,202,0.55);
+    color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px;
+    box-shadow: 0 4px 12px -4px rgba(67,56,202,0.55);
+    flex-shrink: 0;
   }
-  .doc-head h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.025em; margin: 0; }
-  .doc-head .sub { color: var(--ink-3); font-size: 12px; margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
-  .doc-head .meta { font-size: 11px; color: var(--ink-3); font-family: 'JetBrains Mono', monospace; line-height: 1.55; text-align: right; }
+  .doc-head h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; margin: 0; }
+  .doc-head .sub { color: var(--ink-3); font-size: 11px; margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
+  .doc-head .meta { font-size: 10px; color: var(--ink-3); font-family: 'JetBrains Mono', monospace; line-height: 1.5; text-align: right; }
   .doc-head .meta b { color: var(--ink-2); font-weight: 600; }
 
   .flow-bar {
-    display: flex; gap: 4px; align-items: center; margin: 0 0 14px;
-    flex-wrap: wrap; padding: 6px;
-    background: #fff; border: 1px solid var(--line-soft); border-radius: 12px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    margin: 0 0 12px;
+    flex-wrap: wrap;
+    padding: 5px;
+    background: #fff;
+    border: 1px solid var(--line-soft);
+    border-radius: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
+  .flow-bar::-webkit-scrollbar { display: none; }
   .flow-bar .label {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; text-transform: uppercase; letter-spacing: 0.16em;
-    color: var(--ink-4); margin: 0 10px 0 8px;
+    font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--ink-4); margin: 0 8px 0 6px; white-space: nowrap;
   }
   .flow-btn {
     appearance: none; border: 1px solid transparent; background: transparent;
-    padding: 8px 14px; border-radius: 8px;
-    font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 500;
+    padding: 7px 12px; border-radius: 7px;
+    font-family: 'Inter', sans-serif; font-size: 11.5px; font-weight: 500;
     color: var(--ink-2); cursor: pointer;
-    display: inline-flex; align-items: center; gap: 8px;
+    display: inline-flex; align-items: center; gap: 6px;
     transition: all 0.15s ease;
+    white-space: nowrap;
   }
   .flow-btn:hover { background: var(--bg-2); }
-  .flow-btn .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ink-4); }
+  .flow-btn .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ink-4); flex-shrink: 0; }
   .flow-btn.active { background: var(--ink); color: #fff; }
   .flow-btn.active .dot { background: #fff; }
-  .flow-desc { margin-left: 10px; font-size: 12px; color: var(--ink-3); font-style: italic; }
+  .flow-desc { margin-left: 8px; font-size: 11px; color: var(--ink-3); font-style: italic; }
 
   .canvas {
-    position: relative; width: 100%; height: 780px;
+    position: relative;
+    width: 100%;
+    min-height: 600px;
     background: #fdfcf8;
-    border-radius: 14px;
+    border-radius: 12px;
     border: 1px solid var(--line-soft);
     overflow: hidden;
     background-image:
       linear-gradient(to right, rgba(224,221,210,0.28) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(224,221,210,0.28) 1px, transparent 1px);
-    background-size: 32px 32px;
+    background-size: 28px 28px;
   }
-  svg.wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: visible; }
 
-  /* Lane separator dividers (very subtle) */
+  svg.wires {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: visible;
+  }
+
   .lane-rule {
-    position: absolute; left: 70px; right: 70px;
+    position: absolute; left: 50px; right: 50px;
     border-top: 1px dashed rgba(155,155,155,0.18);
     z-index: 0;
   }
   .lane-label {
     position: absolute; z-index: 2;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.22em;
+    font-size: 8px; text-transform: uppercase; letter-spacing: 0.18em;
     color: var(--ink-4); font-weight: 600;
-    background: #fdfcf8; padding: 0 8px;
+    background: #fdfcf8; padding: 0 6px;
   }
 
-  /* Cards */
   .node {
     position: absolute;
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 10px 12px 10px 14px;
+    border-radius: 10px;
+    padding: 8px 10px 8px 12px;
     z-index: 3;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 8px 18px -12px rgba(21,23,28,0.18);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 6px 14px -10px rgba(21,23,28,0.18);
     transition: opacity 0.3s ease, transform 0.18s ease, box-shadow 0.2s ease, border-color 0.2s;
   }
   .node::before {
     content: ''; position: absolute;
-    left: 0; top: 10px; bottom: 10px; width: 3px;
+    left: 0; top: 8px; bottom: 8px; width: 3px;
     border-radius: 2px; background: var(--accent, var(--ink-4));
   }
   .node:hover { transform: translateY(-2px); border-color: var(--accent, var(--line)); }
-  .node .head { display: flex; align-items: center; gap: 9px; }
+  .node .head { display: flex; align-items: center; gap: 8px; }
   .node .tag {
-    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
+    font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600;
     color: var(--accent, var(--ink-3));
     font-family: 'JetBrains Mono', monospace; line-height: 1.2;
   }
-  .node h3 { font-size: 13.5px; font-weight: 600; margin: 2px 0 0; letter-spacing: -0.01em; }
+  .node h3 { font-size: 12px; font-weight: 600; margin: 2px 0 0; letter-spacing: -0.01em; }
   .node .stack {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; color: var(--ink-2); line-height: 1.45; margin-top: 5px;
+    font-size: 9px; color: var(--ink-2); line-height: 1.4; margin-top: 4px;
   }
-  .node .purpose { font-size: 10.5px; color: var(--ink-3); line-height: 1.45; margin-top: 4px; }
+  .node .purpose { font-size: 9.5px; color: var(--ink-3); line-height: 1.4; margin-top: 3px; }
   .node-icon {
-    width: 28px; height: 28px; border-radius: 7px;
+    width: 24px; height: 24px; border-radius: 6px;
     background: var(--accent-soft, var(--bg-2));
     color: var(--accent, var(--ink-2));
     display: inline-flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
-  .node-icon svg { width: 15px; height: 15px; }
+  .node-icon svg { width: 13px; height: 13px; }
 
   .node.user  { --accent: var(--indigo);  --accent-soft: var(--indigo-soft); }
   .node.app   { --accent: var(--indigo);  --accent-soft: var(--indigo-soft); }
@@ -163,11 +196,10 @@
   body.flow-active .node:not(.in-flow) { opacity: 0.18; filter: saturate(0.3); }
   body.flow-active .wire-group:not(.in-flow) { opacity: 0.10; }
 
-  /* Wires */
   .wire {
     fill: none;
     stroke: #6b7280;
-    stroke-width: 1.9;
+    stroke-width: 1.6;
     stroke-linecap: round;
     stroke-linejoin: round;
     transition: stroke 0.2s ease, stroke-width 0.2s ease, filter 0.2s ease;
@@ -176,22 +208,21 @@
   body.flow-active .wire-group.in-flow .wire {
     filter: drop-shadow(0 1px 2px rgba(21,23,28,0.10));
   }
-  .wire-dashed { stroke-dasharray: 5 5; }
+  .wire-dashed { stroke-dasharray: 4 4; }
   .wire-deploy { stroke: var(--deploy); }
   .wire-group.flow-buy    .wire { stroke: var(--buy); }
   .wire-group.flow-browse .wire { stroke: var(--browse); }
   .wire-group.flow-mail   .wire { stroke: var(--mail); }
   .wire-group.flow-deploy .wire { stroke: var(--deploy); }
-  /* Swap marker colors to match flow color */
   .wire-group.flow-buy    .wire { marker-end: url(#arrow-buy);    marker-start: url(#start-dot-buy); }
   .wire-group.flow-browse .wire { marker-end: url(#arrow-browse); marker-start: url(#start-dot-browse); }
   .wire-group.flow-mail   .wire { marker-end: url(#arrow-mail);   marker-start: url(#start-dot-mail); }
   .wire-group.flow-deploy .wire { marker-end: url(#arrow-deploy); marker-start: url(#start-dot-deploy); }
-  body.flow-active .wire-group.in-flow .wire { stroke-width: 2.4; }
+  body.flow-active .wire-group.in-flow .wire { stroke-width: 2.2; }
 
   .wire-label {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    font-size: 9px;
     fill: #4b5563;
     pointer-events: none;
   }
@@ -199,9 +230,9 @@
 
   .step-badge {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; font-weight: 700; fill: #fff; pointer-events: none;
+    font-size: 9px; font-weight: 700; fill: #fff; pointer-events: none;
   }
-  .step-badge-bg { stroke: #fff; stroke-width: 1.8; }
+  .step-badge-bg { stroke: #fff; stroke-width: 1.6; }
   .step.flow-buy    .step-badge-bg { fill: var(--buy); }
   .step.flow-browse .step-badge-bg { fill: var(--browse); }
   .step.flow-mail   .step-badge-bg { fill: var(--mail); }
@@ -210,37 +241,169 @@
   body.flow-active .step { opacity: 1; transition: opacity 0.2s ease; }
   body.flow-active .step:not(.in-flow) { opacity: 0; }
 
-  @keyframes flow-march { to { stroke-dashoffset: -36; } }
+  @keyframes flow-march { to { stroke-dashoffset: -32; } }
   body.flow-active .wire-group.in-flow .wire {
-    stroke-dasharray: 7 5;
-    animation: flow-march 1.6s linear infinite;
+    stroke-dasharray: 6 4;
+    animation: flow-march 1.4s linear infinite;
   }
 
-  .below { display: flex; gap: 14px; align-items: stretch; margin-top: 14px; }
+  .below { display: flex; gap: 12px; align-items: stretch; margin-top: 12px; flex-wrap: wrap; }
   .legend {
-    display: flex; gap: 18px; align-items: center; flex-wrap: wrap;
-    padding: 12px 16px;
+    display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+    padding: 10px 14px;
     background: #fff; border: 1px solid var(--line-soft); border-radius: 10px;
-    font-size: 11px; color: var(--ink-2);
+    font-size: 10px; color: var(--ink-2);
     font-family: 'JetBrains Mono', monospace; flex: 1;
   }
-  .legend .item { display: flex; align-items: center; gap: 7px; }
-  .legend .swatch { width: 10px; height: 10px; border-radius: 50%; }
+  .legend .item { display: flex; align-items: center; gap: 6px; }
+  .legend .swatch { width: 9px; height: 9px; border-radius: 50%; }
   .legend .sep { color: var(--ink-4); }
   .flow-narrative {
-    padding: 14px 18px; background: #fff; border-radius: 10px;
+    padding: 12px 16px; background: #fff; border-radius: 10px;
     border: 1px solid var(--line-soft);
-    font-size: 12px; color: var(--ink-2); line-height: 1.6;
-    display: none; flex: 2;
+    font-size: 11px; color: var(--ink-2); line-height: 1.5;
+    display: none; flex: 1;
+    min-width: 200px;
   }
   body.flow-active .flow-narrative { display: block; }
   .flow-narrative b { color: var(--ink); font-weight: 600; }
   .flow-narrative .step-pill {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 18px; height: 18px; border-radius: 50%;
-    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
-    color: #fff; margin: 0 3px 0 5px; vertical-align: middle;
+    width: 16px; height: 16px; border-radius: 50%;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
+    color: #fff; margin: 0 2px 0 4px; vertical-align: middle;
   }
+
+  /* Responsive: Tablet */
+  @media (max-width: 1024px) {
+    .scene { padding: 16px 12px 20px; }
+    .doc-head h1 { font-size: 16px; }
+    .doc-head .meta { font-size: 9px; }
+    .canvas { min-height: 500px; }
+    .node { padding: 7px 9px 7px 10px; }
+    .node h3 { font-size: 11px; }
+    .node .stack, .node .purpose { font-size: 8.5px; }
+    .lane-label { font-size: 7px; }
+  }
+
+  /* Responsive: Mobile */
+  @media (max-width: 768px) {
+    body { padding: 12px; }
+    .scene {
+      border-radius: 16px;
+      padding: 14px 10px 18px;
+    }
+    .doc-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .doc-head .meta { text-align: left; font-size: 9px; }
+    .doc-head h1 { font-size: 15px; }
+    .doc-head .sub { font-size: 10px; }
+    .flow-bar { padding: 4px; gap: 3px; }
+    .flow-btn { padding: 6px 10px; font-size: 10.5px; }
+    .flow-desc { display: none; }
+
+    /* Hide canvas, show mobile cards */
+    .canvas { display: none; }
+
+    .mobile-diagram {
+      display: block;
+      padding: 12px 8px;
+    }
+
+    .mobile-section {
+      margin-bottom: 16px;
+    }
+    .mobile-section-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; text-transform: uppercase; letter-spacing: 0.16em;
+      color: var(--ink-4); font-weight: 600;
+      margin-bottom: 8px;
+      padding-left: 4px;
+    }
+    .mobile-cards {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .mobile-cards::-webkit-scrollbar { display: none; }
+
+    .mobile-card {
+      flex: 0 0 auto;
+      min-width: 140px;
+      max-width: 180px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      box-shadow: 0 2px 8px -4px rgba(21,23,28,0.15);
+    }
+    .mobile-card::before {
+      content: ''; display: block;
+      width: 3px; height: 16px; border-radius: 2px;
+      background: var(--accent, var(--ink-4));
+      margin-bottom: 8px;
+    }
+    .mobile-card.user  { --accent: var(--indigo); }
+    .mobile-card.app   { --accent: var(--indigo); }
+    .mobile-card.ext   { --accent: var(--amber); background: #fffdf8; }
+    .mobile-card.data  { --accent: var(--teal); background: #f7fcfb; }
+    .mobile-card.infra { --accent: var(--violet); background: #faf8ff; }
+
+    .mobile-card .card-tag {
+      font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600;
+      color: var(--accent, var(--ink-3));
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .mobile-card h4 {
+      font-size: 12px; font-weight: 600; margin: 3px 0 0;
+      color: var(--ink);
+    }
+    .mobile-card p {
+      font-size: 9px; color: var(--ink-3); margin: 4px 0 0;
+      line-height: 1.4;
+    }
+
+    .mobile-flow {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 12px;
+      background: #fff;
+      border: 1px solid var(--line-soft);
+      border-radius: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .mobile-flow::-webkit-scrollbar { display: none; }
+    .mobile-flow-step {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: var(--ink-2);
+      font-family: 'JetBrains Mono', monospace;
+      white-space: nowrap;
+    }
+    .mobile-flow-step .num {
+      display: flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; border-radius: 50%;
+      font-size: 9px; font-weight: 700; color: #fff;
+    }
+    .mobile-flow-arrow {
+      color: var(--ink-4);
+      font-size: 12px;
+    }
+
+    .below { flex-direction: column; }
+    .legend { font-size: 9px; gap: 10px; }
+    .flow-narrative { font-size: 10px; min-width: unset; }
+  }
+
+  /* Hide mobile diagram by default */
+  .mobile-diagram { display: none; }
 </style>
 </head>
 <body>
@@ -272,20 +435,17 @@
 
   <section class="canvas" id="canvas">
 
-    <!-- Lane separators (between rows) -->
-    <div class="lane-rule" style="top: 170px;"></div>
-    <div class="lane-rule" style="top: 340px;"></div>
-    <div class="lane-rule" style="top: 500px;"></div>
+    <div class="lane-rule" style="top: 140px;"></div>
+    <div class="lane-rule" style="top: 280px;"></div>
+    <div class="lane-rule" style="top: 420px;"></div>
 
-    <div class="lane-label" style="top: 22px; left: 64px;">01 · Externos</div>
-    <div class="lane-label" style="top: 192px; left: 64px;">02 · Aplicación</div>
-    <div class="lane-label" style="top: 362px; left: 64px;">03 · Datos</div>
-    <div class="lane-label" style="top: 522px; left: 64px;">04 · DevOps · CI/CD</div>
+    <div class="lane-label" style="top: 18px; left: 50px;">01 · Externos</div>
+    <div class="lane-label" style="top: 158px; left: 50px;">02 · Aplicación</div>
+    <div class="lane-label" style="top: 298px; left: 50px;">03 · Datos</div>
+    <div class="lane-label" style="top: 438px; left: 50px;">04 · DevOps · CI/CD</div>
 
-    <!-- ============ WIRES (viewBox 1400×780, orthogonal) ============ -->
-    <svg class="wires" viewBox="0 0 1400 780" preserveAspectRatio="none">
+    <svg class="wires" viewBox="0 0 1400 650" preserveAspectRatio="none">
       <defs>
-        <!-- Per-color arrowheads (CSS swaps marker-end per flow). markerUnits=strokeWidth so the head grows with the active wire. -->
         <marker id="arrow" viewBox="0 0 14 14" refX="12" refY="7" markerWidth="10" markerHeight="10" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
           <path d="M 1 1 L 13 7 L 1 13 L 4 7 Z" fill="#475569" stroke="#475569" stroke-width="0.5" stroke-linejoin="round"/>
         </marker>
@@ -318,139 +478,106 @@
         </marker>
       </defs>
 
-      <!-- SPINE: User → Frontend → Backend → Postgres (all at y=255) -->
-
-      <!-- 1: User → Frontend  (buy:1, browse:1) -->
       <g class="wire-group" data-flows="buy,browse">
-        <path class="wire" d="M 290 255 L 360 255" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
-        <g class="step flow-buy"><circle class="step-badge-bg" cx="325" cy="240" r="10"/><text class="step-badge" x="325" y="243" text-anchor="middle">1</text></g>
-        <g class="step flow-browse"><circle class="step-badge-bg" cx="325" cy="240" r="10"/><text class="step-badge" x="325" y="243" text-anchor="middle">1</text></g>
+        <path class="wire" d="M 240 215 L 310 215" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
+        <g class="step flow-buy"><circle class="step-badge-bg" cx="275" cy="200" r="9"/><text class="step-badge" x="275" y="203" text-anchor="middle">1</text></g>
+        <g class="step flow-browse"><circle class="step-badge-bg" cx="275" cy="200" r="9"/><text class="step-badge" x="275" y="203" text-anchor="middle">1</text></g>
       </g>
 
-      <!-- 2: Frontend → Backend  (buy:2, browse:2) -->
       <g class="wire-group" data-flows="buy,browse">
-        <path class="wire" d="M 560 255 L 630 255" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
-        <rect class="wire-label-bg" x="565" y="262" width="60" height="15" rx="3"/>
-        <text class="wire-label" x="595" y="273" text-anchor="middle">REST API</text>
-        <g class="step flow-buy"><circle class="step-badge-bg" cx="595" cy="240" r="10"/><text class="step-badge" x="595" y="243" text-anchor="middle">2</text></g>
-        <g class="step flow-browse"><circle class="step-badge-bg" cx="595" cy="240" r="10"/><text class="step-badge" x="595" y="243" text-anchor="middle">2</text></g>
+        <path class="wire" d="M 470 215 L 540 215" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
+        <rect class="wire-label-bg" x="475" y="222" width="55" height="14" rx="3"/>
+        <text class="wire-label" x="502" y="232" text-anchor="middle">REST API</text>
+        <g class="step flow-buy"><circle class="step-badge-bg" cx="502" cy="200" r="9"/><text class="step-badge" x="502" y="203" text-anchor="middle">2</text></g>
+        <g class="step flow-browse"><circle class="step-badge-bg" cx="502" cy="200" r="9"/><text class="step-badge" x="502" y="203" text-anchor="middle">2</text></g>
       </g>
 
-      <!-- 6: Backend → Postgres (continues spine)  (buy:6, browse:4) -->
       <g class="wire-group" data-flows="buy,browse">
-        <path class="wire" d="M 830 255 L 900 255" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
-        <rect class="wire-label-bg" x="833" y="262" width="64" height="15" rx="3"/>
-        <text class="wire-label" x="865" y="273" text-anchor="middle">Prisma</text>
-        <g class="step flow-buy"><circle class="step-badge-bg" cx="865" cy="240" r="10"/><text class="step-badge" x="865" y="243" text-anchor="middle">6</text></g>
-        <g class="step flow-browse"><circle class="step-badge-bg" cx="865" cy="240" r="10"/><text class="step-badge" x="865" y="243" text-anchor="middle">4</text></g>
+        <path class="wire" d="M 700 215 L 770 215" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
+        <rect class="wire-label-bg" x="703" y="222" width="58" height="14" rx="3"/>
+        <text class="wire-label" x="732" y="232" text-anchor="middle">Prisma</text>
+        <g class="step flow-buy"><circle class="step-badge-bg" cx="732" cy="200" r="9"/><text class="step-badge" x="732" y="203" text-anchor="middle">6</text></g>
+        <g class="step flow-browse"><circle class="step-badge-bg" cx="732" cy="200" r="9"/><text class="step-badge" x="732" y="203" text-anchor="middle">4</text></g>
       </g>
 
-      <!-- Payment loop ABOVE spine -->
-
-      <!-- 3: Backend → Stripe  (buy:3) -->
-      <!-- Backend top-left (650, 215) up to y=45, left across to x=465, down to Stripe top (465, 75) -->
       <g class="wire-group" data-flows="buy">
-        <path class="wire" d="M 650 215 L 650 45 L 465 45 L 465 75" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
-        <rect class="wire-label-bg" x="500" y="28" width="106" height="15" rx="3"/>
-        <text class="wire-label" x="553" y="39" text-anchor="middle">payment intent</text>
-        <g class="step flow-buy"><circle class="step-badge-bg" cx="465" cy="58" r="10"/><text class="step-badge" x="465" y="61" text-anchor="middle">3</text></g>
+        <path class="wire" d="M 560 175 L 560 40 L 390 40 L 390 65" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
+        <rect class="wire-label-bg" x="420" y="25" width="95" height="14" rx="3"/>
+        <text class="wire-label" x="467" y="35" text-anchor="middle">payment intent</text>
+        <g class="step flow-buy"><circle class="step-badge-bg" cx="390" cy="52" r="9"/><text class="step-badge" x="390" y="55" text-anchor="middle">3</text></g>
       </g>
 
-      <!-- 4: Stripe → Webhook  (buy:4) -->
-      <!-- Stripe right middle (550, 115) → Webhook left middle (650, 115) -->
       <g class="wire-group" data-flows="buy">
-        <path class="wire wire-dashed" d="M 550 115 L 650 115" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
-        <rect class="wire-label-bg" x="568" y="93" width="62" height="15" rx="3"/>
-        <text class="wire-label" x="599" y="104" text-anchor="middle">evento</text>
-        <g class="step flow-buy"><circle class="step-badge-bg" cx="600" cy="130" r="10"/><text class="step-badge" x="600" y="133" text-anchor="middle">4</text></g>
+        <path class="wire wire-dashed" d="M 460 95 L 560 95" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
+        <rect class="wire-label-bg" x="478" y="76" width="56" height="14" rx="3"/>
+        <text class="wire-label" x="506" y="86" text-anchor="middle">evento</text>
+        <g class="step flow-buy"><circle class="step-badge-bg" cx="508" cy="108" r="9"/><text class="step-badge" x="508" y="111" text-anchor="middle">4</text></g>
       </g>
 
-      <!-- 5: Webhook → Backend  (buy:5) -->
-      <!-- Webhook bottom-center (735, 155) → vertical down to Backend top (735, 215) -->
       <g class="wire-group" data-flows="buy">
-        <path class="wire" d="M 735 155 L 735 215" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
-        <rect class="wire-label-bg" x="745" y="172" width="98" height="15" rx="3"/>
-        <text class="wire-label" x="794" y="183" text-anchor="middle">POST /webhook</text>
-        <g class="step flow-buy"><circle class="step-badge-bg" cx="735" cy="185" r="10"/><text class="step-badge" x="735" y="188" text-anchor="middle">5</text></g>
+        <path class="wire" d="M 630 130 L 630 175" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
+        <rect class="wire-label-bg" x="638" y="145" width="88" height="14" rx="3"/>
+        <text class="wire-label" x="682" y="155" text-anchor="middle">POST /webhook</text>
+        <g class="step flow-buy"><circle class="step-badge-bg" cx="630" cy="152" r="9"/><text class="step-badge" x="630" y="155" text-anchor="middle">5</text></g>
       </g>
 
-      <!-- 7: Backend → Email  (buy:7, mail:1) -->
-      <!-- Backend top-right (810, 215) up to y=110, right across to Email left (1090, 110) -->
       <g class="wire-group" data-flows="buy,mail">
-        <path class="wire wire-dashed" d="M 828 215 L 828 50 L 1090 50 L 1090 70" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
-        <rect class="wire-label-bg" x="900" y="32" width="100" height="15" rx="3"/>
-        <text class="wire-label" x="950" y="43" text-anchor="middle">transactional</text>
-        <g class="step flow-buy"><circle class="step-badge-bg" cx="950" cy="63" r="10"/><text class="step-badge" x="950" y="66" text-anchor="middle">7</text></g>
-        <g class="step flow-mail"><circle class="step-badge-bg" cx="950" cy="63" r="10"/><text class="step-badge" x="950" y="66" text-anchor="middle">1</text></g>
+        <path class="wire wire-dashed" d="M 700 175 L 700 40 L 920 40 L 920 60" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
+        <rect class="wire-label-bg" x="755" y="26" width="90" height="14" rx="3"/>
+        <text class="wire-label" x="800" y="36" text-anchor="middle">transactional</text>
+        <g class="step flow-buy"><circle class="step-badge-bg" cx="800" cy="52" r="9"/><text class="step-badge" x="800" y="55" text-anchor="middle">7</text></g>
+        <g class="step flow-mail"><circle class="step-badge-bg" cx="800" cy="52" r="9"/><text class="step-badge" x="800" y="55" text-anchor="middle">1</text></g>
       </g>
 
-      <!-- 8: Email → User (return arrow, top route)  (buy:8, mail:2) -->
-      <!-- Email top (1190, 70) → up to y=22 → left across to x=200 → down to User top (200, 215) -->
       <g class="wire-group" data-flows="buy,mail">
-        <path class="wire wire-dashed" d="M 1190 70 L 1190 22 L 200 22 L 200 215" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
-        <rect class="wire-label-bg" x="640" y="9" width="62" height="15" rx="3"/>
-        <text class="wire-label" x="671" y="20" text-anchor="middle">recibo</text>
-        <g class="step flow-buy"><circle class="step-badge-bg" cx="500" cy="22" r="10"/><text class="step-badge" x="500" y="25" text-anchor="middle">8</text></g>
-        <g class="step flow-mail"><circle class="step-badge-bg" cx="500" cy="22" r="10"/><text class="step-badge" x="500" y="25" text-anchor="middle">2</text></g>
+        <path class="wire wire-dashed" d="M 1000 60 L 1000 18 L 170 18 L 170 175" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
+        <rect class="wire-label-bg" x="540" y="8" width="56" height="14" rx="3"/>
+        <text class="wire-label" x="568" y="18" text-anchor="middle">recibo</text>
+        <g class="step flow-buy"><circle class="step-badge-bg" cx="420" cy="18" r="9"/><text class="step-badge" x="420" y="21" text-anchor="middle">8</text></g>
+        <g class="step flow-mail"><circle class="step-badge-bg" cx="420" cy="18" r="9"/><text class="step-badge" x="420" y="21" text-anchor="middle">2</text></g>
       </g>
 
-      <!-- Data BELOW spine -->
-
-      <!-- 9: Backend → Redis (cache)  (browse:3) -->
-      <!-- Backend bottom-left (660, 295) → down to y=400 → left to Redis top-center (430, 400) → down to Redis top (430, 395) -->
       <g class="wire-group" data-flows="browse">
-        <path class="wire" d="M 660 295 L 660 375 L 430 375 L 430 395" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
-        <rect class="wire-label-bg" x="540" y="358" width="62" height="15" rx="3"/>
-        <text class="wire-label" x="571" y="369" text-anchor="middle">cache</text>
-        <g class="step flow-browse"><circle class="step-badge-bg" cx="500" cy="375" r="10"/><text class="step-badge" x="500" y="378" text-anchor="middle">3</text></g>
+        <path class="wire" d="M 580 245 L 580 320 L 360 320 L 360 340" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
+        <rect class="wire-label-bg" x="455" y="304" width="55" height="14" rx="3"/>
+        <text class="wire-label" x="482" y="314" text-anchor="middle">cache</text>
+        <g class="step flow-browse"><circle class="step-badge-bg" cx="420" cy="320" r="9"/><text class="step-badge" x="420" y="323" text-anchor="middle">3</text></g>
       </g>
 
-      <!-- 10: Object Storage → Backend (browse:5) -->
-      <!-- Storage top (1100, 395) → up to y=320 → left to x=790 → up to Backend bottom (790, 295) -->
       <g class="wire-group" data-flows="browse">
-        <path class="wire" d="M 1100 395 L 1100 320 L 790 320 L 790 295" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
-        <rect class="wire-label-bg" x="900" y="302" width="62" height="15" rx="3"/>
-        <text class="wire-label" x="931" y="313" text-anchor="middle">images</text>
-        <g class="step flow-browse"><circle class="step-badge-bg" cx="950" cy="320" r="10"/><text class="step-badge" x="950" y="323" text-anchor="middle">5</text></g>
+        <path class="wire" d="M 940 340 L 940 280 L 680 280 L 680 245" marker-start="url(#start-dot)" marker-end="url(#arrow)"/>
+        <rect class="wire-label-bg" x="770" y="264" width="55" height="14" rx="3"/>
+        <text class="wire-label" x="797" y="274" text-anchor="middle">images</text>
+        <g class="step flow-browse"><circle class="step-badge-bg" cx="810" cy="280" r="9"/><text class="step-badge" x="810" y="283" text-anchor="middle">5</text></g>
       </g>
 
-      <!-- DevOps -->
-
-      <!-- 11: Repo BE → Railway  (deploy:1) -->
       <g class="wire-group" data-flows="deploy">
-        <path class="wire wire-deploy" d="M 310 580 L 340 580 L 340 635 L 360 635" marker-start="url(#start-dot)" marker-end="url(#arrow-deploy)"/>
-        <g class="step flow-deploy"><circle class="step-badge-bg" cx="325" cy="565" r="10"/><text class="step-badge" x="325" y="568" text-anchor="middle">1</text></g>
+        <path class="wire wire-deploy" d="M 200 490 L 230 490 L 230 540 L 250 540" marker-start="url(#start-dot)" marker-end="url(#arrow-deploy)"/>
+        <g class="step flow-deploy"><circle class="step-badge-bg" cx="215" cy="475" r="9"/><text class="step-badge" x="215" y="478" text-anchor="middle">1</text></g>
       </g>
 
-      <!-- 12: Repo FE → Railway  (deploy:2) -->
       <g class="wire-group" data-flows="deploy">
-        <path class="wire wire-deploy" d="M 310 650 L 340 650 L 340 635 L 360 635" marker-start="url(#start-dot)" marker-end="url(#arrow-deploy)"/>
-        <g class="step flow-deploy"><circle class="step-badge-bg" cx="325" cy="670" r="10"/><text class="step-badge" x="325" y="673" text-anchor="middle">2</text></g>
+        <path class="wire wire-deploy" d="M 200 550 L 230 550 L 230 540 L 250 540" marker-start="url(#start-dot)" marker-end="url(#arrow-deploy)"/>
+        <g class="step flow-deploy"><circle class="step-badge-bg" cx="215" cy="565" r="9"/><text class="step-badge" x="215" y="568" text-anchor="middle">2</text></g>
       </g>
 
-      <!-- 13: Railway → Producción  (deploy:3) -->
       <g class="wire-group" data-flows="deploy">
-        <path class="wire wire-deploy" d="M 600 650 L 700 650" marker-start="url(#start-dot)" marker-end="url(#arrow-deploy)"/>
-        <rect class="wire-label-bg" x="615" y="657" width="60" height="15" rx="3"/>
-        <text class="wire-label" x="645" y="668" text-anchor="middle">release</text>
-        <g class="step flow-deploy"><circle class="step-badge-bg" cx="650" cy="635" r="10"/><text class="step-badge" x="650" y="638" text-anchor="middle">3</text></g>
+        <path class="wire wire-deploy" d="M 490 540 L 580 540" marker-start="url(#start-dot)" marker-end="url(#arrow-deploy)"/>
+        <rect class="wire-label-bg" x="502" y="546" width="55" height="14" rx="3"/>
+        <text class="wire-label" x="529" y="556" text-anchor="middle">release</text>
+        <g class="step flow-deploy"><circle class="step-badge-bg" cx="535" cy="525" r="9"/><text class="step-badge" x="535" y="528" text-anchor="middle">3</text></g>
       </g>
 
-      <!-- 14: Producción → live (annotation arrow)  (deploy:4) -->
       <g class="wire-group" data-flows="deploy">
-        <path class="wire wire-deploy wire-dashed" d="M 920 650 L 1040 650" marker-start="url(#start-dot)" marker-end="url(#arrow-deploy)"/>
-        <rect class="wire-label-bg" x="950" y="630" width="64" height="15" rx="3"/>
-        <text class="wire-label" x="982" y="641" text-anchor="middle">live URL</text>
-        <g class="step flow-deploy"><circle class="step-badge-bg" cx="980" cy="665" r="10"/><text class="step-badge" x="980" y="668" text-anchor="middle">4</text></g>
+        <path class="wire wire-deploy wire-dashed" d="M 780 540 L 880 540" marker-start="url(#start-dot)" marker-end="url(#arrow-deploy)"/>
+        <rect class="wire-label-bg" x="805" y="525" width="58" height="14" rx="3"/>
+        <text class="wire-label" x="834" y="535" text-anchor="middle">live URL</text>
+        <g class="step flow-deploy"><circle class="step-badge-bg" cx="830" cy="555" r="9"/><text class="step-badge" x="830" y="558" text-anchor="middle">4</text></g>
       </g>
     </svg>
 
-    <!-- ============ CARDS ============ -->
-
     <!-- TOP ROW · Externos -->
-
-    <!-- Stripe (above Frontend area) -->
-    <div class="node ext" data-flows="buy" style="left: 380px; top: 75px; width: 170px;">
+    <div class="node ext" data-flows="buy" style="left: 310px; top: 65px; width: 160px;">
       <div class="head">
         <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><path d="M7 15h3"/></svg></div>
         <div><div class="tag">External · pagos</div><h3>Stripe</h3></div>
@@ -458,8 +585,7 @@
       <div class="purpose">Pasarela: métodos, transacciones, reembolsos.</div>
     </div>
 
-    <!-- Webhook (above Backend area) -->
-    <div class="node app" data-flows="buy" style="left: 650px; top: 75px; width: 170px;">
+    <div class="node app" data-flows="buy" style="left: 560px; top: 65px; width: 160px;">
       <div class="head">
         <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12a4 4 0 1 1 6.5 3.1"/><path d="M19 17a3 3 0 1 1-5.7-1.3"/><path d="M5 16a3 3 0 1 0 4.1 2.8"/></svg></div>
         <div><div class="tag">Webhook</div><h3>Stripe → Backend</h3></div>
@@ -467,8 +593,7 @@
       <div class="purpose">Reenvía eventos al backend.</div>
     </div>
 
-    <!-- Email (top right) -->
-    <div class="node ext" data-flows="buy,mail" style="left: 1090px; top: 70px; width: 200px;">
+    <div class="node ext" data-flows="buy,mail" style="left: 920px; top: 60px; width: 190px;">
       <div class="head">
         <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg></div>
         <div><div class="tag">External · email</div><h3>Correo transaccional</h3></div>
@@ -476,18 +601,15 @@
       <div class="purpose">Recibos, eventos, notificaciones.</div>
     </div>
 
-    <!-- ============ SPINE · Aplicación ============ -->
-
-    <!-- User -->
-    <div class="node user" data-flows="buy,browse,mail" style="left: 110px; top: 215px; width: 180px;">
+    <!-- SPINE -->
+    <div class="node user" data-flows="buy,browse,mail" style="left: 90px; top: 175px; width: 150px;">
       <div class="head">
         <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
         <div><div class="tag">Cliente</div><h3>Usuario · Browser</h3></div>
       </div>
     </div>
 
-    <!-- Frontend -->
-    <div class="node app" data-flows="buy,browse,deploy" style="left: 360px; top: 215px; width: 200px;">
+    <div class="node app" data-flows="buy,browse,deploy" style="left: 310px; top: 175px; width: 160px;">
       <div class="head">
         <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/></svg></div>
         <div><div class="tag">App · web</div><h3>Frontend</h3></div>
@@ -495,8 +617,7 @@
       <div class="stack">Next.js · TypeScript</div>
     </div>
 
-    <!-- Backend -->
-    <div class="node app" data-flows="buy,browse,mail,deploy" style="left: 630px; top: 215px; width: 200px;">
+    <div class="node app" data-flows="buy,browse,mail,deploy" style="left: 540px; top: 175px; width: 160px;">
       <div class="head">
         <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><circle cx="7" cy="7" r="0.8" fill="currentColor"/><circle cx="7" cy="17" r="0.8" fill="currentColor"/></svg></div>
         <div><div class="tag">App · server</div><h3>Backend API</h3></div>
@@ -504,8 +625,7 @@
       <div class="stack">Node.js · TS · Prisma</div>
     </div>
 
-    <!-- Postgres -->
-    <div class="node data" data-flows="buy,browse" style="left: 900px; top: 215px; width: 220px;">
+    <div class="node data" data-flows="buy,browse" style="left: 770px; top: 175px; width: 200px;">
       <div class="head">
         <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
         <div><div class="tag">DB · primary</div><h3>PostgreSQL</h3></div>
@@ -513,10 +633,8 @@
       <div class="stack">usuarios · órdenes · inventario</div>
     </div>
 
-    <!-- ============ ROW 3 · Datos ============ -->
-
-    <!-- Redis (below Frontend area) -->
-    <div class="node data" data-flows="browse" style="left: 340px; top: 395px; width: 180px;">
+    <!-- ROW 3 · Datos -->
+    <div class="node data" data-flows="browse" style="left: 280px; top: 340px; width: 160px;">
       <div class="head">
         <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
         <div><div class="tag">Cache</div><h3>Redis</h3></div>
@@ -524,8 +642,7 @@
       <div class="purpose">Acelera consultas frecuentes.</div>
     </div>
 
-    <!-- Object Storage (below Postgres area) -->
-    <div class="node data" data-flows="browse" style="left: 1000px; top: 395px; width: 200px;">
+    <div class="node data" data-flows="browse" style="left: 850px; top: 340px; width: 180px;">
       <div class="head">
         <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M3 18l5-5 5 4 3-3 5 5"/></svg></div>
         <div><div class="tag">Storage</div><h3>Object Storage</h3></div>
@@ -533,26 +650,22 @@
       <div class="purpose">Imágenes de productos.</div>
     </div>
 
-    <!-- ============ ROW 4 · DevOps ============ -->
-
-    <!-- GitHub Repo BE -->
-    <div class="node app" data-flows="deploy" style="left: 80px; top: 555px; width: 230px;">
+    <!-- ROW 4 · DevOps -->
+    <div class="node app" data-flows="deploy" style="left: 60px; top: 465px; width: 180px;">
       <div class="head">
         <div class="node-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.4.5 0 5.9 0 12.5c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6C20.6 22.3 24 17.8 24 12.5 24 5.9 18.6.5 12 .5z"/></svg></div>
         <div><div class="tag">repo · backend</div><h3>ecommerce-backend</h3></div>
       </div>
     </div>
 
-    <!-- GitHub Repo FE -->
-    <div class="node app" data-flows="deploy" style="left: 80px; top: 625px; width: 230px;">
+    <div class="node app" data-flows="deploy" style="left: 60px; top: 530px; width: 180px;">
       <div class="head">
         <div class="node-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.4.5 0 5.9 0 12.5c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6C20.6 22.3 24 17.8 24 12.5 24 5.9 18.6.5 12 .5z"/></svg></div>
         <div><div class="tag">repo · frontend</div><h3>ecommerce-web</h3></div>
       </div>
     </div>
 
-    <!-- Railway -->
-    <div class="node infra" data-flows="deploy" style="left: 360px; top: 595px; width: 240px;">
+    <div class="node infra" data-flows="deploy" style="left: 250px; top: 500px; width: 200px;">
       <div class="head">
         <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="10" rx="2"/><circle cx="8" cy="19" r="1.6"/><circle cx="16" cy="19" r="1.6"/></svg></div>
         <div><div class="tag">PaaS</div><h3>Railway</h3></div>
@@ -560,8 +673,7 @@
       <div class="purpose">Build &amp; deploy continuo.</div>
     </div>
 
-    <!-- Producción -->
-    <div class="node infra" data-flows="deploy" style="left: 700px; top: 595px; width: 220px;">
+    <div class="node infra" data-flows="deploy" style="left: 580px; top: 500px; width: 200px;">
       <div class="head">
         <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg></div>
         <div><div class="tag">Live</div><h3>Producción</h3></div>
@@ -569,8 +681,7 @@
       <div class="purpose">Versión activa servida.</div>
     </div>
 
-    <!-- Live URL terminal -->
-    <div class="node infra" data-flows="deploy" style="left: 1040px; top: 615px; width: 200px;">
+    <div class="node infra" data-flows="deploy" style="left: 880px; top: 510px; width: 180px;">
       <div class="head">
         <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg></div>
         <div><div class="tag">URL pública</div><h3>shop.example.com</h3></div>
@@ -578,6 +689,116 @@
     </div>
 
   </section>
+
+  <!-- Mobile Diagram -->
+  <div class="mobile-diagram" id="mobileDiagram">
+    <div class="mobile-section">
+      <div class="mobile-section-title">Flujo: Compra con Stripe</div>
+      <div class="mobile-flow" id="mobileFlowBuy">
+        <div class="mobile-flow-step"><span class="num" style="background:#15803d">1</span> Usuario</div>
+        <span class="mobile-flow-arrow">→</span>
+        <div class="mobile-flow-step"><span class="num" style="background:#15803d">2</span> Frontend</div>
+        <span class="mobile-flow-arrow">→</span>
+        <div class="mobile-flow-step"><span class="num" style="background:#15803d">3</span> Backend</div>
+        <span class="mobile-flow-arrow">→</span>
+        <div class="mobile-flow-step"><span class="num" style="background:#15803d">4</span> Stripe</div>
+        <span class="mobile-flow-arrow">→</span>
+        <div class="mobile-flow-step"><span class="num" style="background:#15803d">5</span> Webhook</div>
+        <span class="mobile-flow-arrow">→</span>
+        <div class="mobile-flow-step"><span class="num" style="background:#15803d">6</span> PostgreSQL</div>
+      </div>
+    </div>
+
+    <div class="mobile-section">
+      <div class="mobile-section-title">01 · Cliente</div>
+      <div class="mobile-cards">
+        <div class="mobile-card user" data-flows="buy,browse,mail">
+          <div class="card-tag">Cliente</div>
+          <h4>Usuario · Browser</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-section">
+      <div class="mobile-section-title">02 · Aplicación</div>
+      <div class="mobile-cards">
+        <div class="mobile-card app" data-flows="buy,browse,deploy">
+          <div class="card-tag">App · web</div>
+          <h4>Frontend</h4>
+          <p>Next.js · TypeScript</p>
+        </div>
+        <div class="mobile-card app" data-flows="buy,browse,mail,deploy">
+          <div class="card-tag">App · server</div>
+          <h4>Backend API</h4>
+          <p>Node.js · TS · Prisma</p>
+        </div>
+        <div class="mobile-card ext" data-flows="buy">
+          <div class="card-tag">External · pagos</div>
+          <h4>Stripe</h4>
+          <p>Pasarela de pagos</p>
+        </div>
+        <div class="mobile-card ext" data-flows="buy">
+          <div class="card-tag">Webhook</div>
+          <h4>Stripe → Backend</h4>
+          <p>Reenvía eventos</p>
+        </div>
+        <div class="mobile-card ext" data-flows="buy,mail">
+          <div class="card-tag">External · email</div>
+          <h4>Correo transaccional</h4>
+          <p>Recibos, notificaciones</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-section">
+      <div class="mobile-section-title">03 · Datos</div>
+      <div class="mobile-cards">
+        <div class="mobile-card data" data-flows="buy,browse">
+          <div class="card-tag">DB · primary</div>
+          <h4>PostgreSQL</h4>
+          <p>usuarios · órdenes · inventario</p>
+        </div>
+        <div class="mobile-card data" data-flows="browse">
+          <div class="card-tag">Cache</div>
+          <h4>Redis</h4>
+          <p>Acelera consultas frecuentes</p>
+        </div>
+        <div class="mobile-card data" data-flows="browse">
+          <div class="card-tag">Storage</div>
+          <h4>Object Storage</h4>
+          <p>Imágenes de productos</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-section">
+      <div class="mobile-section-title">04 · DevOps · CI/CD</div>
+      <div class="mobile-cards">
+        <div class="mobile-card app" data-flows="deploy">
+          <div class="card-tag">repo · backend</div>
+          <h4>ecommerce-backend</h4>
+        </div>
+        <div class="mobile-card app" data-flows="deploy">
+          <div class="card-tag">repo · frontend</div>
+          <h4>ecommerce-web</h4>
+        </div>
+        <div class="mobile-card infra" data-flows="deploy">
+          <div class="card-tag">PaaS</div>
+          <h4>Railway</h4>
+          <p>Build &amp; deploy continuo</p>
+        </div>
+        <div class="mobile-card infra" data-flows="deploy">
+          <div class="card-tag">Live</div>
+          <h4>Producción</h4>
+          <p>Versión activa servida</p>
+        </div>
+        <div class="mobile-card infra" data-flows="deploy">
+          <div class="card-tag">URL pública</div>
+          <h4>shop.example.com</h4>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="below">
     <div class="legend">
@@ -623,16 +844,26 @@
     buttons.forEach(b => b.classList.toggle('active', b.dataset.flow === flow));
     desc.textContent = FLOWS[flow].desc || '';
     narrative.innerHTML = FLOWS[flow].narrative || '';
+
+    const isMobile = window.innerWidth <= 768;
+
     if (flow === 'all') {
       document.body.classList.remove('flow-active');
-      // Steps carry their flow-* class as identity (drives color) — only strip in-flow on them.
       document.querySelectorAll('.step').forEach(el => el.classList.remove('in-flow'));
       document.querySelectorAll('.node, .wire-group').forEach(el => {
         el.classList.remove('in-flow','flow-buy','flow-browse','flow-mail','flow-deploy');
       });
+      if (isMobile) {
+        document.querySelectorAll('.mobile-card, .mobile-flow-step').forEach(el => {
+          el.classList.remove('in-flow');
+          el.style.opacity = '';
+        });
+      }
       return;
     }
+
     document.body.classList.add('flow-active');
+
     document.querySelectorAll('.node').forEach(el => {
       const flows = (el.dataset.flows || '').split(',').map(s => s.trim());
       el.classList.toggle('in-flow', flows.includes(flow));
@@ -647,9 +878,33 @@
     document.querySelectorAll('.step').forEach(el => {
       el.classList.toggle('in-flow', el.classList.contains('flow-' + flow));
     });
+
+    if (isMobile) {
+      document.querySelectorAll('.mobile-card').forEach(el => {
+        const flows = (el.dataset.flows || '').split(',').map(s => s.trim());
+        el.style.opacity = flows.includes(flow) ? '1' : '0.2';
+      });
+    }
   }
 
   buttons.forEach(b => b.addEventListener('click', () => applyFlow(b.dataset.flow)));
+
+  function handleResize() {
+    const isMobile = window.innerWidth <= 768;
+    const canvas = document.getElementById('canvas');
+    const mobileDiagram = document.getElementById('mobileDiagram');
+
+    if (isMobile) {
+      canvas.style.display = 'none';
+      mobileDiagram.style.display = 'block';
+    } else {
+      canvas.style.display = 'block';
+      mobileDiagram.style.display = 'none';
+    }
+  }
+
+  window.addEventListener('resize', handleResize);
+  handleResize();
   applyFlow('buy');
 </script>
 </body>
